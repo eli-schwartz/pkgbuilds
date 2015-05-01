@@ -2,3 +2,4 @@
 
 ssh aur-dev setup-repo ${1}
 git submodule add aur-dev:/${1}.git
+cp gitignore "${1}/.gitignore"

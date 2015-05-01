@@ -1,0 +1,18 @@
+[submodule "calibre-installer"]
+	path = calibre-installer
+	url = aur-dev:/calibre-installer.git
+[submodule "kindletool"]
+	path = kindletool
+	url = aur-dev:/kindletool.git
+[submodule "kindletool-git"]
+	path = kindletool-git
+	url = aur-dev:/kindletool-git.git
+[submodule "fanficfare-git"]
+	path = fanficfare-git
+	url = aur-dev:/fanficfare-git.git
+[submodule "fanficfare"]
+	path = fanficfare
+	url = aur-dev:/fanficfare.git
+[submodule "git-extras"]
+	path = git-extras
+	url = aur-dev:/git-extras.git

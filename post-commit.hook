@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# push to non-dev AUR
+# non-dev AUR compatibility
 echo -e "\033[0;32m *** Generating aurball ***\033[0m"
 makepkg --source > /dev/null 2>&1
-burp *.src.tar.gz

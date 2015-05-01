@@ -21,8 +21,9 @@ hooks() {
     echo "Adding commit hooks..."
     shopt -s nullglob
     for folder in .git/modules/*/hooks/ */.git/hooks/; do
-        ln -sf ../../../../pre-commit.hook ${folder}/pre-commit
-        ln -sf ../../../../post-commit.hook ${folder}/post-commit
+        for hook in *.hook; do
+            ln -sf "$(pwd)/${hook}" "${folder}/${hook%.hook}"
+        done
     done
 }
 

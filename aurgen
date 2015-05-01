@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ssh aur-dev setup-repo ${1}
+git submodule add aur-dev:/${1}.git

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# remove build artifacts
+rm -rf src/ pkg/
+rm -rf *.pkg.tar.xz *.src.tar.gz
+rm -rf v[0-9]*.tar.gz
+
+# remove backup files
+rm -rf *~
+
+# make sure .SRCINFO is up to date
+echo -e "\033[0;32m *** Generating and adding .SRCINFO ***\033[0m"
+mksrcinfo
+git add .SRCINFO

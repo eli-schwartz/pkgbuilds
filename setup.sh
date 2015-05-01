@@ -12,7 +12,9 @@ _EOF_
 
 modules() {
     echo "Setting up sub-repos..."
-    git submodule init && git submodule update --remote
+    git submodule update --init && git submodule foreach 'git checkout master'
+    echo "Adding .gitignore to sub-repos..."
+    git submodule foreach --quiet 'cp ../gitignore .gitignore'
 }
 
 hooks() {

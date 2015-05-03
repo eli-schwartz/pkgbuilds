@@ -26,6 +26,10 @@ hooks() {
     done
 }
 
+archive() {
+    git submodule --quiet foreach "dest=../archive/\$(basename \$(pwd)); mkdir -p \${dest}; cp -f \$(git ls-tree --name-only HEAD) \${dest}/"
+}
+
 all() {
     ssh
     modules

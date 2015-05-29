@@ -4,9 +4,8 @@ ssh() {
 	cat <<- _EOF_ >> ~/.ssh/config
 		Host aur-dev
 		    User aur
-		    Hostname aur-dev.archlinux.org
+		    Hostname aur4.archlinux.org
 		    IdentityFile ~/.ssh/keys/aur-dev
-		    Port 2222
 _EOF_
 }
 

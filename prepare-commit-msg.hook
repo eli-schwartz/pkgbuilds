@@ -1,0 +1,9 @@
+#!/bin/bash
+
+old_commit_msg="$(cat ${1})"
+echo -n "" > "${1}"
+
+source PKGBUILD
+echo -e "upgpkg: ${pkgname} ${pkgver}-${pkgrel}\n" >> "${1}"
+
+echo "${old_commit_msg}" >> "${1}"

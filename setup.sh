@@ -18,9 +18,8 @@ _EOF_
 ssh() {
     echo "Appending ssh-config rules..."
 	cat <<- _EOF_ >> ~/.ssh/config
-		Host aur
+		Host aur4.archlinux.org
 		    User aur
-		    Hostname aur4.archlinux.org
 		    IdentityFile ~/.ssh/keys/aur
 _EOF_
 }

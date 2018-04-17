@@ -1,0 +1,16 @@
+pkgbase = xapps-git
+	pkgdesc = Common library for X-Apps project
+	pkgver = r26.15e6611
+	pkgrel = 1
+	url = https://github.com/linuxmint/xapps
+	arch = i686
+	arch = x86_64
+	license = GPL
+	makedepends = git
+	depends = libgnomekbd
+	conflicts = xapps
+	source = xapps-git::git+https://github.com/linuxmint/xapps.git
+	md5sums = SKIP
+
+pkgname = xapps-git
+

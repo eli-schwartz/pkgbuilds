@@ -25,6 +25,8 @@ pkgver() {
 }
 
 build() {
+    cd "${srcdir}/${pkgname%-git}"
+    ./LASTPASS-VERSION-GEN
     mkdir -p "${srcdir}/${pkgname%-git}/build"
     cd "${srcdir}/${pkgname%-git}/build"
     cmake -G "Unix Makefiles" \

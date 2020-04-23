@@ -1,6 +1,8 @@
 # PKGBUILDs for [Arch User Repository](https://aur.archlinux.org)
 Includes control scripts for managing AUR packages.
 
+# WARNING: Development has been moved to https://github.com/eli-schwartz/aurpublish/ and this branch is End of Life.
+
 In order to reuse this, checkout the "base" branch and add your own packages on top. Don't keep mine. ;)
 An additional branch, "submodules-base", contains a previous attempt of mine. I decided I don't want to use submodules, but if you'd rather use that, feel free to take a look. :)
 

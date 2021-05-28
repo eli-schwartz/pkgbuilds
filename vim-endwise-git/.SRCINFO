@@ -1,0 +1,17 @@
+pkgbase = vim-endwise-git
+	pkgdesc = Wisely add "end" in ruby, endfunction/endif/more in vim script, etc
+	pkgver = 1.2.r28.gd565526
+	pkgrel = 1
+	url = https://github.com/tpope/vim-endwise
+	arch = any
+	groups = vim-plugins
+	license = custom:vim
+	makedepends = git
+	depends = vim
+	provides = vim-endwise
+	conflicts = vim-endwise
+	source = git+https://github.com/tpope/vim-endwise.git
+	sha256sums = SKIP
+
+pkgname = vim-endwise-git
+

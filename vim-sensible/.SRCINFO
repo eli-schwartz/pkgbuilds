@@ -1,0 +1,14 @@
+pkgbase = vim-sensible
+	pkgdesc = vim defaults everyone can agree on
+	pkgver = 1.2
+	pkgrel = 1
+	url = https://github.com/tpope/vim-sensible
+	arch = any
+	groups = vim-plugins
+	license = custom:vim
+	depends = vim
+	source = vim-sensible-1.2.tar.gz::https://github.com/tpope/vim-sensible/archive/v1.2.tar.gz
+	sha256sums = 3b83f8f6445fff628cab4a5571984eb853fe9c3d53297ff3e8a647d1576940f3
+
+pkgname = vim-sensible
+

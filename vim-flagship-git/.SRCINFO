@@ -1,0 +1,17 @@
+pkgbase = vim-flagship-git
+	pkgdesc = Configurable and extensible tab line and status line, by tpope
+	pkgver = 1.1.r3.g77342d7
+	pkgrel = 2
+	url = https://github.com/tpope/vim-flagship
+	arch = any
+	groups = vim-plugins
+	license = custom:vim
+	makedepends = git
+	depends = vim
+	provides = vim-flagship
+	conflicts = vim-flagship
+	source = git+https://github.com/tpope/vim-flagship.git
+	sha512sums = SKIP
+
+pkgname = vim-flagship-git
+

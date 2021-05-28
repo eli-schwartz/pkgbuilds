@@ -1,0 +1,92 @@
+# Maintainer: Eli Schwartz <eschwartz@archlinux.org>
+# Contributor: Iacopo Isimbaldi <isiachi@rhye.it>
+
+# All my PKGBUILDs are managed at https://github.com/eli-schwartz/pkgbuilds
+
+pkgname=zfs-dkms
+pkgver=2.0.4
+pkgrel=3
+pkgdesc="Kernel modules for the Zettabyte File System."
+arch=('any')
+url="https://zfsonlinux.org/"
+license=('CDDL')
+conflicts=('spl-dkms')
+provides=("ZFS-MODULE=${pkgver}" "SPL-MODULE=${pkgver}" 'spl-dkms')
+# ambiguous, provided for backwards compat, pls don't use
+provides+=('zfs')
+replaces=('spl-dkms')
+source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-${pkgver}/zfs-${pkgver}.tar.gz"{,.asc}
+        "https://github.com/openzfs/zfs/commit/f315d9a3ff3cc0b81c99dd9be5878a55d2e98d8e.patch"
+        "https://github.com/openzfs/zfs/commit/77352db228c07ce8ba50478b9029820ca69c6c1b.patch"
+        "https://github.com/openzfs/zfs/pull/12139/commits/6e87a2a66e890a503286d634031fd433792fb1d4.patch"
+        "https://github.com/openzfs/zfs/pull/12139/commits/068c3af1dba8edb30e2507af5732430da1c35e6e.patch"
+        "https://github.com/openzfs/zfs/pull/12141/commits/49fb50cbc80c2ff074dfca269634cc512ae8437c.patch"
+        "https://github.com/openzfs/zfs/pull/12178/commits/8a20656774b8347cbdda30bb12fe8bb1b729f655.patch"
+        "0001-only-build-the-module-in-dkms.conf.patch")
+sha256sums=('7d1344c5433b91823f02c2e40b33d181fa6faf286bea5591f4b1965f23d45f6c'
+            'SKIP'
+            'f91835f187f5210fd855ee929b8f893771874a456db2bee685f71c833c696db8'
+            'd44e6e7b6a6aa5dc4422127f23524f315463fb9c042a519817b4f9cba5c483d1'
+            'aa6e9556115ac81a064907d7e95944b7b2f045b9f932b0c692c2e8121c995c54'
+            '27016c1f18128274d61825887f7345718fb5c5da70c05679efa98b28a3948d7e'
+            '911f7e9aa17c4b646e42344cb11620361846be25c53de77f669b89cd24e09dc7'
+            '0c3923d2e013903f611dfd4fc3073c6ba33a975cc274c5935f7390410ef0e45f'
+            '780e590383fb00389c5e02ac15709b7a476d9e07d3c4935ed9eb67c951a88409')
+b2sums=('7e4780092c0a87d5d187cd5734ddc736574db80b500f155287640ef2230e09335cc9b6b26ec1b7d8ab1b7942673ea49a3007a81da372a6d2ac36f3908913045c'
+        'SKIP'
+        '49724351c5a8e6ffa66762d5aac84ad89a3d04022d086d9f37ccd616b3e8e95852197b5333bdeeeab54fc51516d8254d0138a4422cc66214bb602e5ed72bbabf'
+        'cfe0d17448f25ec649ca7cf0bb7ee4f2685d09b2fa693b411f31a4035e113627c8be73514b39f2460646b9a556a133afcbfc803675d93d1fd5d93d64d8b4e7b2'
+        'ceee0c6d5d9046d10c8b2a68c3778ec94bfe1159aedeadd514f5669eb7d2caa380ab6b11f0286d903a7d9871c90b12c569fb4ded0766be06c255fa2fb31a324e'
+        '54eb746c4c7b03bb2d17077a3643bb609bfdd38ab0a4ab04c9220490dfbae56cda4f25837e7b65c519ca231f351a9113c2c5b8e1361b7dcb2497bbd59d287a9e'
+        '2e875753c9a8fc6f84f004df357a15153f5ab97e9c50a87d6adbc5114b83c694cac6aa9d47fdadb27449f3e75d627356dd682a707a12a2c67dfb6b9e91e19a1b'
+        '59888ac2058c4d13b509484537fb202f90844e9fbb0699881acb23df647e5c3d1148dcc2bfc1b571fb05e56c4e48394dabcd0c409f01370eece07ba0598f576d'
+        '1fdae935043d979b9241f07f8baa25a9a0367c24c31c84a59dfe8d6b468a523d8f49b68da3c7fd3194db6638f9d7bef046fc5e2669ce25d73c65009c16bf6c50')
+validpgpkeys=('4F3BA9AB6D1F8D683DC2DFB56AD860EED4598027'  # Tony Hutter (GPG key for signing ZFS releases) <hutter2@llnl.gov>
+              'C33DF142657ED1F7C328A2960AB9E991C6AF658B') # Brian Behlendorf <behlendorf1@llnl.gov>
+
+prepare() {
+    cd "${srcdir}"/${pkgname%-dkms}-${pkgver}
+
+    patch -p1 -i ../0001-only-build-the-module-in-dkms.conf.patch
+
+    # Kernel 5.12 compat, https://github.com/openzfs/zfs/pull/12009
+    patch -p1 -i ../f315d9a3ff3cc0b81c99dd9be5878a55d2e98d8e.patch
+    patch -p1 -i ../77352db228c07ce8ba50478b9029820ca69c6c1b.patch
+
+    # Kernel 5.12 backport "fixes for tmpiles and userns changes", https://github.com/openzfs/zfs/pull/12139
+    patch -p1 -i ../6e87a2a66e890a503286d634031fd433792fb1d4.patch
+    patch -p1 -i ../068c3af1dba8edb30e2507af5732430da1c35e6e.patch
+
+    # Kernel 5.12 backport "Fix dmu_recv_stream test for resumable", https://github.com/openzfs/zfs/pull/12141
+    patch -p1 -i ../49fb50cbc80c2ff074dfca269634cc512ae8437c.patch
+
+    # Bugfix backport, "Remove iov_iter_advance() for iter_write", https://github.com/openzfs/zfs/pull/12178
+    patch -p1 -i ../8a20656774b8347cbdda30bb12fe8bb1b729f655.patch
+
+    # remove unneeded sections from module build
+    sed -ri "/AC_CONFIG_FILES/,/]\)/{
+/AC_CONFIG_FILES/n
+/]\)/n
+/^\s*(module\/.*|${pkgname%-dkms}.release|Makefile)/!d
+}" configure.ac
+
+    autoreconf -fi
+}
+
+build() {
+    cd "${srcdir}"/${pkgname%-dkms}-${pkgver}
+
+    ./scripts/dkms.mkconf -n ${pkgname%-dkms} -v ${pkgver} -f dkms.conf
+}
+
+package() {
+    depends=("zfs-utils=${pkgver}" 'dkms')
+
+    cd "${srcdir}"/${pkgname%-dkms}-${pkgver}
+
+    dkmsdir="${pkgdir}/usr/src/${pkgname%-dkms}-${pkgver}"
+    install -d "${dkmsdir}"/{config,scripts}
+    cp -a configure dkms.conf Makefile.in META ${pkgname%-dkms}_config.h.in ${pkgname%-dkms}.release.in include/ module/ "${dkmsdir}"/
+    cp config/compile config/config.* config/missing config/*sh "${dkmsdir}"/config/
+    cp scripts/enum-extract.pl scripts/dkms.postbuild "${dkmsdir}"/scripts/
+}

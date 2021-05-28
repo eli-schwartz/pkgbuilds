@@ -1,0 +1,25 @@
+pkgbase = fanficfare-git
+	pkgdesc = A tool for downloading fanfiction to eBook formats
+	pkgver = 4.2.0.r0.g6d6f2737
+	pkgrel = 1
+	url = https://github.com/JimmXinu/FanFicFare
+	arch = any
+	license = Apache
+	makedepends = git
+	depends = python-beautifulsoup4
+	depends = python-brotli
+	depends = python-chardet
+	depends = python-cloudscraper
+	depends = python-html5lib
+	depends = python-html2text
+	depends = python-requests-file
+	optdepends = calibre: use FanFicFare as a calibre plugin
+	optdepends = python-pillow: support for converting/resizing story images and covers
+	provides = fanficfare
+	conflicts = fanficfare
+	source = git+https://github.com/JimmXinu/FanFicFare.git
+	source = 0001-makeplugin-do-not-bundle-system-dependencies.patch
+	sha256sums = SKIP
+	sha256sums = 6d172dcc98a8f6dcef2048272bfabd810ceeb5740969fbe406ebcd7b638e072c
+
+pkgname = fanficfare-git

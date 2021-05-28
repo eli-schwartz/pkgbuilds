@@ -1,0 +1,19 @@
+pkgbase = calibre-installer
+	pkgdesc = Automatically install and update the calibre standalone binaries
+	pkgver = 0.4
+	pkgrel = 1
+	url = https://github.com/eli-schwartz/calibre-installer
+	install = calibre-installer.install
+	arch = any
+	license = GPL
+	depends = wget
+	depends = python
+	conflicts = calibre
+	source = calibre-installer-0.4.tar.gz::https://github.com/eli-schwartz/calibre-installer/archive/v0.4.tar.gz
+	source = https://github.com/eli-schwartz/calibre-installer/releases/download/v0.4/calibre-installer-0.4.tar.gz.sig
+	validpgpkeys = BD27B07A5EF45C2ADAF70E0484818A6819AF4A9B
+	sha256sums = e9339f86064e50bcc8e43233f8547f8272dc0b4745e0a2b338899df09c1d92eb
+	sha256sums = SKIP
+
+pkgname = calibre-installer
+

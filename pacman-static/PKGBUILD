@@ -283,7 +283,7 @@ build() {
         -Dbuildstatic=true \
         -Ddefault_library=static \
         -Ddoc=disabled \
-        -Dldcofig=/usr/bin/ldconfig \
+        -Dldconfig=/usr/bin/ldconfig \
         -Dscriptlet-shell=/usr/bin/bash \
         ..
     ninja

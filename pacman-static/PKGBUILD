@@ -18,7 +18,7 @@ _libassuanver=2.5.5
 _gpgmever=1.15.1
 pkgrel=1
 pkgdesc="Statically-compiled pacman (to fix or install systems without libc)"
-arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h' 'aarch64')
+arch=('i486' 'i686' 'pentium4' 'x86_64' 'arm' 'armv6h' 'armv7h' 'aarch64')
 url="https://www.archlinux.org/pacman/"
 license=('GPL')
 depends=('pacman')
@@ -124,7 +124,7 @@ export CXX=musl-gcc
 
 # https://www.openwall.com/lists/musl/2014/11/05/3
 # fstack-protector and musl do not get along but only on i686
-if [[ $CARCH = i686 ]]; then
+if [[ $CARCH = i686 || $CARCH = pentium4 || $CARCH = i486 ]]; then
     # silly build systems have configure checks or buildtime programs that don't CFLAGS but do do CC
     export CC="musl-gcc -fno-stack-protector"
     export CXX="musl-gcc -fno-stack-protector"
@@ -147,9 +147,17 @@ build() {
             openssltarget='linux-x86_64'
             optflags='enable-ec_nistp_64_gcc_128'
             ;;
-        i686)
+        pentium4)
             openssltarget='linux-elf'
             optflags=''
+            ;;
+        i686)
+            openssltarget='linux-elf'
+            optflags='no-sse2'
+            ;;
+        i486)
+            openssltarget='linux-elf'
+            optflags='386'
             ;;
         arm|armv6h|armv7h)
             openssltarget='linux-armv4'
